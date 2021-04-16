@@ -15,8 +15,8 @@ class CreateCitasTable extends Migration
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titulo',255);
-            $table->dateTime('fecha');
+            $table->string('title',255);
+            $table->dateTime('start');
             $table->string('backgroundColor',20);
             $table->timestamp('duracionCita');
             $table->unsignedInteger('idEstado');
@@ -43,7 +43,7 @@ class CreateCitasTable extends Migration
                   ->on('clientes')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');      
-            $table->string('detalleCita');     
+            $table->string('detalleCita')->null();     
             $table->timestamps();
             $table->softDeletes();
         });

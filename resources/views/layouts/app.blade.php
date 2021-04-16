@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Beauty Time') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,16 +18,15 @@
     <link rel="stylesheet" href="{{asset ('css/bootstrap.min.css')}}">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
     {{-- ESTILOS DEL THEME BOOTSTRAP --}}
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
     <link href="{{ asset('assets/css/material-dashboard.css') }}" rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{{ asset('assets/demo/demo.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/demo/demo.css') }}" rel="stylesheet" />
+    
+    
     {{-- Full calendar --}}
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" />
     <script src="{{asset ('assets/js/core/main.js')}}"></script>
@@ -227,8 +226,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 <!-- Library for adding dinamically elements -->
 <script src="{{asset ('assets/js/plugins/arrive.min.js')}}"></script>
-<!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Chartist JS -->
 <script src="{{asset ('assets/js/plugins/chartist.min.js')}}"></script>
 <!--  Notifications Plugin    -->
