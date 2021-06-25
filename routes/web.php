@@ -30,6 +30,8 @@ Route::put('citas/{cita}/update', 'CitasController@update')->name('citas.update'
 
 Route::resource('usuarios', 'UsuariosController');
 
+Route::resource('clientes', 'ClientesController')->middleware('auth');
+
 Route::resource('actividades', 'ActividadesController')->middleware('auth');
 
 Route::resource('inventario', 'InventarioController')->middleware('auth');

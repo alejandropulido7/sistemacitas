@@ -48,43 +48,49 @@
             <ul class="nav">                
                 <li class="nav-item">  
                   <a class="nav-link" href="{{ url('/') }}">
-                    <i class="material-icons">dashboard</i>
+                    <i class="material-icons">dashboard_customize</i>
                     <p>Dashboard</p>
                   </a>
                 </li>
                 <li class="nav-item usuarios">
+                  <a id="usuarioslink" class="nav-link" href="{{ url('/clientes')}}">
+                    <i class="material-icons">groups</i>
+                    <p class="usuarios">Clientes</p>
+                  </a>
+                </li>
+                <li class="nav-item usuarios">
                   <a id="usuarioslink" class="nav-link" href="{{ url('/usuarios')}}">
-                    <i class="material-icons">usuario</i>
+                    <i class="material-icons">person</i>
                     <p class="usuarios">Usuarios</p>
                   </a>
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="{{ url('/actividades')}}">
-                    <i class="material-icons">actividades</i>
+                    <i class="material-icons">construction</i>
                     <p>Actividades</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url('/citas')}}">
-                    <i class="material-icons">library_books</i>
+                    <i class="material-icons">date_range</i>
                     <p>Citas</p>
                   </a>
                 </li>
                 <li class="nav-item list-group-item list-group-item-action p-0">
                     <a class="nav-link" data-toggle="collapse" data-target="#inventario" type="button">
-                      <i class="material-icons">bubble_chart</i>
+                      <i class="material-icons">assignment</i>
                       <p>Inventario</p>
                     </a>
                 </li>
                 <li class="nav-item collapse pl-4" id="inventario">
                   <a class="nav-link list-group-item list-group-item-action" href="{{ url('/productos')}}">
-                    <i class="material-icons">library_books</i>
+                    <i class="material-icons">view_in_ar</i>
                     <p>Productos</p>
                   </a>
                 </li>
                 <li class="nav-item collapse pl-4" id="inventario">
                     <a class="nav-link list-group-item list-group-item-action" href="{{ url('/inventario')}}">
-                      <i class="material-icons">library_books</i>
+                      <i class="material-icons">grading</i>
                       <p>Inventario</p>
                     </a>
                 </li>

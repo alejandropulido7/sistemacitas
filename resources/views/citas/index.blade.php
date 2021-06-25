@@ -173,6 +173,12 @@
         $('#btn-agregar').css({
           display : 'flex'
         });
+        $('#btn-modificar').css({
+          display: 'none'
+        });
+        $('#btn-borrar').css({
+          display: 'none'
+        });
         limpiarFormulario();
       },
 
@@ -180,9 +186,8 @@
       eventClick:function(info){
         $('#cont-id').append("<input type='hidden' id='idCita' name='id'></input>")
         mes = (info.event.start.getMonth()+1);
-        dia = (info.event.start.getDay());
+        dia = (info.event.start.getDate());
         anio = (info.event.start.getFullYear());
-        console.log(anio+"-"+mes+"-"+dia);
         mes = (mes<10)?"0"+mes:mes;
         dia = (dia<10)?"0"+dia:dia;
         hora = (info.event.start.getHours());
@@ -191,7 +196,6 @@
         $('#idCita').val(info.event.id);
         $('#titulo').val(info.event.title);	
         $('#fecha-cita').val(anio+"-"+mes+"-"+dia);
-        // $('#fecha-cita').val(info.event.start);
         $('#hora-cita').val(hora);
         $('#min-cita').val(min);
         $('#color-cita').val(info.event.backgroundColor);
@@ -204,9 +208,12 @@
         $('#btn-agregar').css({
           display : 'none'
         });
-        
-        // console.log(info.event.start.getDay()));
-        console.log(info.event);
+        $('#btn-modificar').css({
+          display: 'inline-block'
+        });
+        $('#btn-borrar').css({
+          display: 'inline-block'
+        });
       },
 
       //MOSTRAR LOS EVENTOS

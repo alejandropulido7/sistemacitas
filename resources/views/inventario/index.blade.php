@@ -341,7 +341,7 @@
     </div>
   </div>
 
-  {{-- <script>
+  <script>
 
     function editarInventario(idInventario, idProducto, fechaInventario, cantidadInventario, nombreProducto){
          
@@ -358,7 +358,7 @@
       $('#cantidadAsignada').attr('max',cantidadProducto);
     }
 
-  </script> --}}
+  </script>
 
 
 
