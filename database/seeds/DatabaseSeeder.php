@@ -7,6 +7,7 @@ use App\Clientes;
 use App\Productos;
 use App\CategoriaProd;
 use App\Actividades;
+use App\EstadoCitas;
 
 class DatabaseSeeder extends Seeder
 {
@@ -45,5 +46,15 @@ class DatabaseSeeder extends Seeder
         $categoria = factory(CategoriaProd::class,5)->create();
         $actividades = factory(Actividades::class,5)->create();
         $productos = factory(Productos::class,6)->create();
+
+        $status1 = new EstadoCitas();
+        $status1->nombreEstado = 'Nuevo';
+        $status1->notaEstado = 'Estado nuevo';
+        $status1->save();
+
+        $status2 = new EstadoCitas();
+        $status2->nombreEstado = 'Terminado';
+        $status2->notaEstado = 'Estado terminado';
+        $status2->save();
     }
 }

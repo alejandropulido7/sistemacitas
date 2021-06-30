@@ -161,7 +161,16 @@
        crearCita: {
         text: 'Crear cita',
         click: function() {
-          $('#modalCrearCita').modal();          
+          $('#modalCrearCita').modal();
+          $('#btn-agregar').css({
+          display : 'flex'
+          });
+          $('#btn-modificar').css({
+            display: 'none'
+          });
+          $('#btn-borrar').css({
+            display: 'none'
+          });       
           }
         }
       },

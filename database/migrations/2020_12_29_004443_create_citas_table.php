@@ -43,7 +43,7 @@ class CreateCitasTable extends Migration
                   ->on('clientes')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');      
-            $table->string('detalleCita')->null();     
+            $table->string('detalleCita')->nullable();     
             $table->timestamps();
             $table->softDeletes();
         });

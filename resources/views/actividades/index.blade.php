@@ -33,13 +33,16 @@
               <td>{{$actividad->nombreActividad}}</td>
               <td>{{$actividad->precioActividad}}</td>
               <td>{{$actividad->horaRequerida}} : {{$actividad->minRequerido}}</td>
-              <td class="d-flex">
-                <button class="btn btn-info">Editar</button>
-                <form action="{{ route('actividades.destroy', $actividad->id)}}" method="post">
-                  {{ csrf_field() }}
-                  {{method_field('DELETE')}}
-                  <button type="submit" onclick="return confirm('¿Seguro desea borrar el registro?');" class="btn btn-danger">Borrar</button>
-                </form>          
+              <td class="nav-item dropdown d-flex">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" class="fas fa-x8 fa-angle-double-down"></a>
+                <div class="dropdown-menu">
+                  <button class="dropdown-item w-100 m-0">Editar</button>
+                  <form action="{{ route('actividades.destroy', $actividad->id)}}" method="post">
+                    {{ csrf_field() }}
+                    {{method_field('DELETE')}}
+                    <button type="submit" onclick="return confirm('¿Seguro desea borrar el registro?');" class="dropdown-item w-100 m-0">Borrar</button>
+                  </form>
+                </div>          
               </td>
             </tr>
           @endforeach          

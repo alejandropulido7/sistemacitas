@@ -9,13 +9,13 @@
                 <div class="card-header">{{ __('Agregar empleado') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" class="d-flex flex-column" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group row">
+                        <div class="d-flex my-3">
                             <label for="doc" class="col-md-4 col-form-label text-md-right">{{ __('Documento') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <input id="doc" type="text" class="form-control @error('doc') is-invalid @enderror" name="doc" value="{{ old('doc') }}" required autocomplete="doc" autofocus>
 
                                 @error('doc')
@@ -26,10 +26,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="d-flex my-3">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre completo') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
 
                                 @error('name')
@@ -41,10 +41,10 @@
                         </div>
                         
 
-                        <div class="form-group row">
+                        <div class="d-flex my-3">
                             <label for="cel" class="col-md-4 col-form-label text-md-right">{{ __('Celular') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <input id="cel" type="text" class="form-control @error('cel') is-invalid @enderror" name="cel" value="{{ old('cel') }}" required autocomplete="cel">
 
                                 @error('cel')
@@ -55,10 +55,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="d-flex my-3">
                             <label for="estudios" class="col-md-4 col-form-label text-md-right">{{ __('Estudios realizados') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <input id="estudios" type="text" class="form-control" name="estudios" value="{{ old('estudios') }}">
 
                                 @error('estudios')
@@ -69,10 +69,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="d-flex my-3">
                             <label for="especialidad" class="col-md-4 col-form-label text-md-right">{{ __('Especialidad') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <input id="especialidad" type="text" class="form-control" name="especialidad" value="{{ old('especialidad') }}">
 
                                 @error('especialidad')
@@ -83,10 +83,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="d-flex my-3">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
@@ -97,10 +97,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="d-flex my-3">
                             <label for="user" class="col-md-4 col-form-label text-md-right">{{ __('Usuario') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <input id="user" type="text" class="form-control @error('user') is-invalid @enderror" name="user" value="{{ old('user') }}" required autocomplete="user">
 
                                 @error('user')
@@ -111,10 +111,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="d-flex my-3">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
@@ -125,18 +125,18 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="d-flex my-3">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar contraseña') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="d-flex my-3">
                             <label for="idRol" class="col-md-4 col-form-label text-md-right">{{ __('Seleccione el rol') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <select name="idRol" class="form-control" id="idRol">
                                     @foreach( $datosRoles as $rol)
                                     <option value="{{ $rol->id }}">{{ $rol->nombreRol }}</option>
@@ -145,11 +145,11 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="d-flex my-3">
                             <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
 
                             <div class="col-md-6">
-                                <input id="foto" type="file" class="form-control" name="foto" value="">
+                                <input id="foto" type="file" class="" name="foto" value="">
 
                                 @error('foto')
                                     <span class="invalid-feedback" role="alert">

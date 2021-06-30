@@ -18,8 +18,8 @@ class CreateClientesTable extends Migration
             $table->string('nombreCliente');
             $table->string('correoCliente');
             $table->string('celularCliente');
-            $table->date('cumpleanosCliente');
-            $table->string('direccionCliente');
+            $table->date('cumpleanosCliente')->nullable();
+            $table->string('direccionCliente')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

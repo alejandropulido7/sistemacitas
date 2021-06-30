@@ -40,6 +40,18 @@ class UsuariosController extends Controller
     {
         //
         // $datosUsuario = request()-> all();
+        $request->validate([
+            'docUsuario' => 'required',
+            'nombreCompleto' => 'required',
+            'user' => 'required',
+            'password' => 'required',
+            'email' => 'required',
+            'celular' => 'required',
+            'estudiosUsuario' => 'required',
+            'especialUsuario' => 'required',
+            'estadoUsuario' => 'required'
+        ]);
+
         $datosUsuario = request()->except("_token");
 
         if($request->hash_file('fotoUsuario'))

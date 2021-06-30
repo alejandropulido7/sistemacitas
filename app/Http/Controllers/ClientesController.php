@@ -36,7 +36,14 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombreCliente' => 'required',
+            'correoCliente' => 'required',
+            'celularCliente' => 'required'
+        ]);
+        $clientes = request()->except("_token");       
+        Clientes::insert($clientes);
+        return redirect('clientes');
     }
 
     /**
@@ -79,8 +86,10 @@ class ClientesController extends Controller
      * @param  \App\Clientes  $clientes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Clientes $clientes)
+    public function destroy($id)
     {
-        //
+        $cliente=Clientes::find($id);
+        $cliente->destroy($id);
+        return redirect('clientes');
     }
 }
