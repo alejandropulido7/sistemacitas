@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\asignacion_prod;
 use Illuminate\Http\Request;
+use App\Inventario;
 
 class AsignacionProdController extends Controller
 {
@@ -35,7 +36,20 @@ class AsignacionProdController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $asignacion = request()->except("_token");
+        asignacion_prod::insert($asignacion);
+        $id = $request->idInventario;
+        $cantidad = $request->cantidadAsignada;
+        
+        $idInventario = Inventario::findOrfail($id);
+
+        $nuevaCantidad = ($idInventario->cantidadProducto) - ($cantidad);
+
+        $idInventario->cantidadProducto = $nuevaCantidad;
+        $idInventario->update();
+   
+
+        return redirect()->route('inventario.index');
     }
 
     /**

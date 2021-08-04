@@ -15,8 +15,7 @@ class CreateAsignacionProdsTable extends Migration
     {
         Schema::create('asignacion_prods', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cantidadAsignada');
-            $table->string('detalleAsignacion');
+            $table->integer('cantidadAsignada');            
             $table->unsignedInteger('idInventario');
             $table->foreign('idInventario')
                 ->references('id')
@@ -28,7 +27,8 @@ class CreateAsignacionProdsTable extends Migration
                 ->references('id')
                 ->onDelete('cascade')
                 ->onUpdate('cascade')
-                ->on('usuarios');    
+                ->on('usuarios');
+            $table->string('detalleAsignacion');      
             $table->timestamps();
             $table->softDeletes();
         });

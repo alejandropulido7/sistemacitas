@@ -14,7 +14,7 @@
     
 </div>
   
-{{-- Listar actividades --}}
+{{-- Listar inventario --}}
   <div class="row">
   <div class="col-md-6 col-sm-12">
     <div class="card">
@@ -51,7 +51,9 @@
                           @method('DELETE')
                           <button type="submit" onclick="return confirm('¿Seguro desea borrar el registro?');" class="dropdown-item w-100 m-0">Borrar</button>
                         </form>
-                      <button data-toggle="modal" data-target="#editarAsignacion" onclick="asignarUsuarios('{{$inventario->id}}','{{$inventario->cantidadProducto}}','{{$inventario->nombreProducto}}')" class="dropdown-item w-100 m-0">Asignar</button>  
+                      @if ($inventario->cantidadProducto != 0)
+                        <button data-toggle="modal" data-target="#editarAsignacion" onclick="asignarUsuarios('{{$inventario->id}}','{{$inventario->cantidadProducto}}','{{$inventario->nombreProducto}}')" class="dropdown-item w-100 m-0">Asignar</button>  
+                      @endif  
                       </div>
                               
                     </td>
@@ -213,7 +215,7 @@
             <form action="{{ url('/inventario') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
-                  <input type="date" class="form-control" placeholder="Nombre de la categoria" value="" name="fechaEntrada" id="fechaEntrada">
+                  <input type="date" class="form-control" placeholder="Nombre de la categoria" value="" name="fechaEntrada" id="fechaEntradaAdd">
                 </div>
                 <div class="form-group">
                   <label for="">Producto</label>
@@ -241,7 +243,7 @@
 
   
   <!-- MODAL DE EDITAR INVENTARIO-->
-  @if (!isset($datosInventario))
+  @if (isset($inventario->id)) 
     <div class="modal" id="editarInventario{{$inventario->id}}">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -263,7 +265,7 @@
                   <div class="form-group">
                     <label for="">Producto</label>
                     <div class="d-flex">
-                        <select name="idProducto" class="form-control col-sm-8 mr-3">
+                        <select name="idProducto" class="form-control col-sm-8 mr-3" disabled>
                             <option value="{{$inventario->idProducto}}">{{$inventario->nombreProducto}}</option>                          
                             @foreach( $datosProductos as $producto)
                             @if ($inventario->idProducto !== $producto->id)
@@ -272,7 +274,7 @@
                               
                             @endforeach
                         </select>
-                      <input type="number" class="form-control" placeholder="Cantidad"  value="{{$inventario->cantidadProducto}}" name="cantidadProducto" id="cantidadProductoEdit">
+                      <input type="number" class="form-control" placeholder="Cantidad"  min="0" value="{{$inventario->cantidadProducto}}" name="cantidadProducto" id="cantidadProductoEdit">
                     </div>                    
                 </div>             
           </div>
@@ -302,13 +304,12 @@
   
         <!-- Modal body -->
         <div class="modal-body">
-            <form action="" method="post" enctype="multipart/form-data" id='formEditar'>
+            <form action="{{ url('/asignacion_prods') }}" method="post" enctype="multipart/form-data" id='formEditar'>
                 {{ csrf_field() }}
-                {{@method_field('PATH')}}
                 <div class="form-group">
                   <div class="col-sm-12 mr-2">
                   <label for="">Producto</label>
-                    <input type="hidden" class="form-control" placeholder="Inventario #" name="idInventario" id="idInvenAsignado" disabled>                   
+                    <input type="hidden" class="form-control" placeholder="Inventario #" name="idInventario" id="idInvenAsignado">                   
                     <input type="text" class="form-control" placeholder="Producto" id="productoAsignado" disabled> 
                   </div>                 
                 </div>
@@ -326,9 +327,16 @@
                   <div class="col-sm-6 mr-2">
                     <label for="" >Cantidad para asignar</label>  
                     <input type="number" class="form-control" placeholder="Cantidad" min="1" name="cantidadAsignada" id="cantidadAsignada"> 
-                  </div>                  
+                  </div>
+                                
                   </div>          
-              </div>             
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12 mr-2">
+                  <label for="" >Detalle de la asignación</label>  
+                  <input type="textarea" class="form-control" name="detalleAsignacion" id="detalleAsignacion"> 
+                </div>
+              </div>           
         </div>
         <!-- Modal footer -->
         <div class="modal-footer">
@@ -341,15 +349,8 @@
     </div>
   </div>
 
-  <script>
 
-    function editarInventario(idInventario, idProducto, fechaInventario, cantidadInventario, nombreProducto){
-         
-      $('#fechaEntradaEdit').val(fechaInventario);
-      $('#idProductoEdit').val(idProducto);
-      $('#idProductoEdit').html(nombreProducto);
-      $('#cantidadProductoEdit').val(cantidadInventario);
-    }
+  <script>
 
     function asignarUsuarios(idInventario, cantidadProducto, nombreProducto) {
       $('#idInvenAsignado').val(idInventario);
@@ -357,6 +358,7 @@
       $('#cantidadAsignada').val(cantidadProducto);
       $('#cantidadAsignada').attr('max',cantidadProducto);
     }
+
 
   </script>
 
