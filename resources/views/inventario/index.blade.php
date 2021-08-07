@@ -215,18 +215,20 @@
             <form action="{{ url('/inventario') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
-                  <input type="date" class="form-control" placeholder="Nombre de la categoria" value="" name="fechaEntrada" id="fechaEntradaAdd">
+                  <input type="date" class="form-control" placeholder="Nombre de la categoria" value="" name="fechaEntrada" id="fechaEntradaAdd" required>
                 </div>
                 <div class="form-group">
                   <label for="">Producto</label>
                   <div class="d-flex">
-                      <select name="idProducto" class="form-control col-sm-8 mr-3" id="idProducto">
+                      <select name="idProducto" class="form-control col-sm-8 mr-3" id="idProducto" required>
                           <option value="">Seleccione..</option>
                           @foreach( $datosProductos as $producto)
-                          <option value="{{ $producto->id }}">{{ $producto->nombreProducto }}</option>
+                              @if (!$ProductosInventario->find($producto->id))
+                                <option value="{{ $producto->id }}">{{ $producto->nombreProducto }}</option> 
+                              @endif
                           @endforeach
                       </select>
-                      <input type="number" class="form-control" placeholder="Cantidad" name="cantidadProducto" id="cantidadProducto">
+                      <input type="number" class="form-control" placeholder="Cantidad" min="1" name="cantidadProducto" id="cantidadProducto" required>
                   </div>                    
               </div>             
         </div>  
@@ -359,6 +361,14 @@
       $('#cantidadAsignada').attr('max',cantidadProducto);
     }
 
+    fecha = new Date();
+    mes = (fecha.getMonth()+1);
+    dia = (fecha.getDate());
+    anio = (fecha.getFullYear());
+    // mes = (mes<10)?"0"+mes:mes;
+    // dia = (dia<10)?"0"+dia:dia;
+    $('#fechaEntradaAdd').val(dia+"/"+mes+"/"+anio);
+    console.log(fecha);
 
   </script>
 

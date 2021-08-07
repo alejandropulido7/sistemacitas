@@ -224,7 +224,6 @@
           display: 'inline-block'
         });
       },
-
       //MOSTRAR LOS EVENTOS
       events: "{{ url('/citas/show')}}"
       

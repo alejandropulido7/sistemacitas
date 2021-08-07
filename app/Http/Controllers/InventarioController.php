@@ -30,8 +30,11 @@ class InventarioController extends Controller
                                             ->join('usuarios', 'asignacion_prods.idUsuario', '=', 'usuarios.id')
                                             ->join('productos', 'inventarios.idProducto', '=', 'productos.id')
                                             ->get();
-        $datosUsuario = Usuarios::all();                                                
-        return view('inventario.index', compact('datosCategoria', 'datosInventario', 'datosProductos', 'datosAsignacion', 'datosUsuario'));
+        $datosUsuario = Usuarios::all();   
+        $ProductosInventario = Productos::select('productos.id')
+                                        ->join('inventarios', 'inventarios.idProducto', '=', 'productos.id')
+                                        ->get();                                             
+        return view('inventario.index', compact('datosCategoria', 'datosInventario', 'datosProductos', 'datosAsignacion', 'datosUsuario', 'ProductosInventario'));
     }
 
     /**

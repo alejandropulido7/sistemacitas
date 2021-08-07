@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
         $clientes = factory(Clientes::class,10)->create();
         $categoria = factory(CategoriaProd::class,5)->create();
         $actividades = factory(Actividades::class,5)->create();
-        $productos = factory(Productos::class,6)->create();
+        // $productos = factory(Productos::class,5)->create();
 
         $status1 = new EstadoCitas();
         $status1->nombreEstado = 'Nuevo';

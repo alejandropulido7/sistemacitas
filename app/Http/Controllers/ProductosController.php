@@ -41,7 +41,7 @@ class ProductosController extends Controller
         //
         $datosProductos = request()->except('_token');
         Productos::insert($datosProductos);
-        return redirect('inventario');
+        return redirect('productos');
     }
 
     /**
