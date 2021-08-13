@@ -8,6 +8,6 @@ Software of SPA administration
 
 4. php artisan migrate --seed
 
-## License
+## License 153
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
