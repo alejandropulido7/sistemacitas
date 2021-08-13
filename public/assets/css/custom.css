@@ -1,0 +1,19 @@
+.nav-inv>.nav-item>.nav-link {
+    color: #3C4858 !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+}
+
+.nav-inv>.nav-item>.active {
+    background: linear-gradient(60deg, #ab47bc, #8e24aa) !important;
+    color: #fff !important;
+}
+
+.nav-inv>.nav-item>.nav-link:hover {
+    color: #eee !important;
+    background-color: #ccc !important;
+}
+
+.nav-inv {
+    background-color: rgba(255, 255, 255, 0.4);
+}

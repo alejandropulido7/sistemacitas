@@ -21,6 +21,8 @@ Route::get('/actividades', function () {
     return view('/actividades');
 });
 
+
+
 Route::delete('inventario/{inventario}', 'InventarioController@destroy')->name('inventario.destroy');
 Route::delete('asignacion_prods/{asignacion_prods}', 'AsignacionProdController@destroy')->name('asignacion_prods.destroy');
 Route::put('inventario/{inventario}/update', 'InventarioController@update')->name('inventario.update');
