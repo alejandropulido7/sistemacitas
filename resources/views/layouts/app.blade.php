@@ -20,9 +20,6 @@
     <!-- Styles -->
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
-    {{-- ESTILOS DEL THEME BOOTSTRAP --}}
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
     <link href="{{ asset('assets/css/material-dashboard.css') }}" rel="stylesheet" />
     
@@ -30,6 +27,13 @@
     {{-- Full calendar --}}
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" />
     <script src="{{asset ('assets/js/core/main.js')}}"></script>
+        
+    <!-- CSS Custom -->
+    <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" />
+
+    {{-- ESTILOS DEL THEME BOOTSTRAP --}}
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     
 </head>
 <body>
@@ -76,21 +80,9 @@
                     <p>Citas</p>
                   </a>
                 </li>
-                <li class="nav-item list-group-item list-group-item-action p-0">
-                    <a class="nav-link" data-toggle="collapse" data-target="#inventario" type="button">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/inventario')}}">
                       <i class="material-icons">assignment</i>
-                      <p>Inventario</p>
-                    </a>
-                </li>
-                <li class="nav-item collapse pl-4" id="inventario">
-                  <a class="nav-link list-group-item list-group-item-action" href="{{ url('/productos')}}">
-                    <i class="material-icons">view_in_ar</i>
-                    <p>Productos</p>
-                  </a>
-                </li>
-                <li class="nav-item collapse pl-4" id="inventario">
-                    <a class="nav-link list-group-item list-group-item-action" href="{{ url('/inventario')}}">
-                      <i class="material-icons">grading</i>
                       <p>Inventario</p>
                     </a>
                 </li>

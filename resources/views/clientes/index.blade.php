@@ -28,9 +28,9 @@
               <td>{{$cliente->celularCliente}}</td>
               <td>{{$cliente->cumpleanosCliente}}</td>
               <td class="nav-item dropdown d-flex">
+                <button class="dropdown-item w-100 m-0" data-toggle="modal" data-target="#editarCliente{{$cliente->id}}">Editar</button>
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" class="fas fa-x8 fa-angle-double-down"></a>
                 <div class="dropdown-menu">
-                  <button class="dropdown-item w-100 m-0">Editar</button>
                   <form action="{{ url('/clientes/'.$cliente->id)}}" method="post">
                     {{ csrf_field() }}
                     {{method_field('DELETE')}}
@@ -51,7 +51,7 @@
 
 </div>
 
-@endsection
+
 
 
  <!-- MODAL DE CLIENTES-->
@@ -95,3 +95,68 @@
       </div>
     </div>
   </div>
+
+
+   <!-- MODAL DE CLIENTES-->
+ {{-- <div class="modal" id="editarCliente{{$cliente->id}}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Crear nuevo cliente</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+          <form action="{{ url('/clientes') }}" method="post" enctype="multipart/form-data">
+              {{ csrf_field() }}
+              <div class="form-group">
+                <input type="text" class="form-control" value="{{$cliente->nombreCliente}}" placeholder="Nombre del cliente" name="nombreCliente" id="nombreCliente" required autocomplete="nombreCliente" autofocus>
+              </div>
+              <div class="form-group">
+                  <input type="email" class="form-control" value="{{$cliente->correoCliente}}" placeholder="Correo" name="correoCliente" id="correoCliente" required autocomplete="correoCliente">
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Celular" name="celularCliente" id="celular" required autocomplete="celularCliente">
+              </div>
+              <div class="d-flex col-md-12 p-0 justify-content-between">
+                  <label for="" class="form-label">Cumpleaños</label>
+                  <input type="date" class="form-control" name="cumpleanosCliente" id="cumpleanosCliente">
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Dirección" name="direccionCliente" id="direccionCliente">
+              </div>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-primary">Crear cliente</button>
+              </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div> --}}
+
+
+<div class="modal" tabindex="-1" id="editarCliente{{$cliente->id}}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{$cliente->nombreCliente}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+  @endsection
