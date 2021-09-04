@@ -3,9 +3,19 @@
 
 @section('content')
 
-<div>
-  
-  @yield('inventario')
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12"> 
+  <ul class="nav-inv nav nav-tabs nav-justified mb-5">
+      <li class="nav-item">
+      <a class="nav-link active" href="{{ url('/inventario')}}">Inventario</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="{{ url('/productos')}}">Produtos</a>
+      </li>
+  </ul>
+  </div> 
+  </div> 
 </div>
 
 
@@ -52,18 +62,65 @@
                     <td class="">
                       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" class="fas fa-x8 fa-angle-double-down"></a>
                       <div class="dropdown-menu">
-                        <button data-toggle="modal" data-target="#editarInventario{{$inventario->id}}" class="dropdown-item w-100 m-0">Editar</button>                        
-                      <form class="m-0" method="post" action="{{ route('inventario.destroy', $inventario)}}" >
+                        <button data-toggle="modal" data-target="#editarInventario{{$inventario->id}}" class="dropdown-item w-100 m-0">Editar</button>
+                        <form class="m-0" method="post" action="{{ route('inventario.destroy', $inventario)}}" >
                         {{ csrf_field() }}
                         @method('DELETE')
                         <button type="submit" onclick="return confirm('¿Seguro desea borrar el registro?');" class="dropdown-item w-100 m-0">Borrar</button>
                       </form>
                       @if ($inventario->cantidadProducto != 0)
-                        <button data-toggle="modal" data-target="#editarAsignacion" onclick="asignarUsuarios('{{$inventario->id}}','{{$inventario->cantidadProducto}}','{{$inventario->nombreProducto}}')" class="dropdown-item w-100 m-0">Asignar</button>  
+                        <button data-toggle="modal" data-target="#asignarUsuario" onclick="asignarUsuarios('{{$inventario->id}}','{{$inventario->cantidadProducto}}','{{$inventario->nombreProducto}}')" class="dropdown-item w-100 m-0">Asignar</button>  
                       @endif  
                       </div>
                               
                     </td>
+                    
+                    <!-- MODAL DE EDITAR INVENTARIO-->
+                    <div class="modal" id="editarInventario{{$inventario->id}}" tabindex="-1">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+
+                          <!-- Modal Header -->
+                          <div class="modal-header">
+                            <h4 class="modal-title">Editar producto del inventario</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+
+                          <!-- Modal body -->
+                          <div class="modal-body">
+                              <form action="{{ route('inventario.update', $inventario)}}" method="post" enctype="multipart/form-data" id='formEditar'>
+                                  {{ csrf_field() }}
+                                  @method('PUT')
+                                  <div class="form-group">
+                                    <input type="date" class="form-control" placeholder="Nombre de la categoria" value="{{$inventario->fechaEntrada}}" name="fechaEntrada" id="fechaEntradaEdit">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="">Producto</label>
+                                    <div class="d-flex">
+                                        <select name="idProducto" class="form-control col-sm-8 mr-3" disabled>
+                                            <option value="{{$inventario->idProducto}}">{{$inventario->nombreProducto}}</option>                          
+                                            @foreach( $datosProductos as $producto)
+                                            @if ($inventario->idProducto !== $producto->id)
+                                              <option value="{{ $producto->id }}">{{ $producto->nombreProducto }}</option>
+                                            @endif
+                                              
+                                            @endforeach
+                                        </select>
+                                      <input type="number" class="form-control" placeholder="Cantidad"  min="0" value="{{$inventario->cantidadProducto}}" name="cantidadProducto" id="cantidadProductoEdit">
+                                    </div>                    
+                                </div>             
+                          </div>
+                          <!-- Modal footer -->
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Actualizar inventario</button>
+                          </form>
+                          </div>
+
+                        </div>
+                      </div>
+                      </div>
+
                   </tr>
                 @endforeach
             </tbody>
@@ -101,7 +158,7 @@
                   <td class="nav-item dropdown d-flex">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" class="fas fa-x8 fa-angle-double-down"></a>
                     <div class="dropdown-menu">
-                      <button data-toggle="modal" data-target="#editarAsignacion" class="dropdown-item w-100 m-0">Editar</button>
+                      <button data-toggle="modal" data-target="#editarAsignacion{{$asignacion->id}}" class="dropdown-item w-100 m-0">Editar</button>
                       <form class="m-0" method="post" action="{{ route('asignacion_prods.destroy', $asignacion)}}" >
                         {{ csrf_field() }}
                         @method('DELETE')
@@ -110,6 +167,62 @@
                     </div>
                             
                   </td>
+
+                    <!-- MODAL DE EDITAR ASIGNACION-->
+                    <div class="modal" id="editarAsignacion{{$asignacion->id}}">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                    
+                          <!-- Modal Header -->
+                          <div class="modal-header">
+                            <h4 class="modal-title">Editar asignación del producto: {{$asignacion->nombreProducto}}</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+                    
+                          <!-- Modal body -->
+                          <div class="modal-body">
+                              <form action="{{ url('/asignacion_prods/update/'.$asignacion->id) }}" method="post" enctype="multipart/form-data" id='formEditar'>
+                                  {{ csrf_field() }}
+                                  @method('PUT')
+                                  <div class="form-group">
+                                    <div class="d-flex">
+                                    <div class="col-sm-6 mr-2">
+                                      <input type="hidden" value="{{$asignacion->idInventario}}">
+                                      <label for="" >Modificar usuario</label>
+                                      <select name="idUsuario" class="form-control">
+                                        <option value="{{ $asignacion->idUsuario }}">{{ $asignacion->nombreCompleto }}</option>
+                                          @foreach( $datosUsuario as $usuario)
+                                          @if ($asignacion->idUsuario != $usuario->id)
+                                            <option value="{{ $usuario->id }}">{{ $usuario->nombreCompleto }}</option>                                              
+                                          @endif
+                                          @endforeach
+                                      </select>                  
+                                    </div>                  
+                                    <div class="col-sm-6 mr-2">
+                                      <label for="" >Cantidad para asignar</label>  
+                                      <input type="number" class="form-control" value="{{$asignacion->cantidadAsignada}}" placeholder="Cantidad" min="1" name="cantidadAsignada" id="cantidadAsignada"> 
+                                    </div>
+                                                  
+                                    </div>          
+                                </div>
+                                <div class="form-group">
+                                  <div class="col-sm-12 mr-2">
+                                    <label for="" >Detalle de la asignación</label>  
+                                    <input type="textarea" value="{{$asignacion->detalleAsignacion}}" class="form-control" name="detalleAsignacion" id="detalleAsignacion"> 
+                                  </div>
+                                </div>           
+                          </div>
+                          <!-- Modal footer -->
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Actualizar inventario</button>
+                          </form>
+                          </div>
+                    
+                        </div>
+                      </div>
+                    </div>
+
                 </tr>
               @endforeach
               
@@ -167,57 +280,9 @@
   </div>
 
   
-  <!-- MODAL DE EDITAR INVENTARIO-->
-  @if (isset($inventario)) 
-    <div class="modal" id="editarInventario{{$inventario->id}}">
-      <div class="modal-dialog">
-        <div class="modal-content">
-    
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h4 class="modal-title">Editar producto del inventario</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-    
-          <!-- Modal body -->
-          <div class="modal-body">
-              <form action="{{ route('inventario.update', $inventario)}}" method="post" enctype="multipart/form-data" id='formEditar'>
-                  {{ csrf_field() }}
-                  @method('PUT')
-                  <div class="form-group">
-                    <input type="date" class="form-control" placeholder="Nombre de la categoria" value="{{$inventario->fechaEntrada}}" name="fechaEntrada" id="fechaEntradaEdit">
-                  </div>
-                  <div class="form-group">
-                    <label for="">Producto</label>
-                    <div class="d-flex">
-                        <select name="idProducto" class="form-control col-sm-8 mr-3" disabled>
-                            <option value="{{$inventario->idProducto}}">{{$inventario->nombreProducto}}</option>                          
-                            @foreach( $datosProductos as $producto)
-                            @if ($inventario->idProducto !== $producto->id)
-                              <option value="{{ $producto->id }}">{{ $producto->nombreProducto }}</option>
-                            @endif
-                              
-                            @endforeach
-                        </select>
-                      <input type="number" class="form-control" placeholder="Cantidad"  min="0" value="{{$inventario->cantidadProducto}}" name="cantidadProducto" id="cantidadProductoEdit">
-                    </div>                    
-                </div>             
-          </div>
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Actualizar inventario</button>
-          </form>
-          </div>
-    
-        </div>
-      </div>
-    </div>
-      
-  @endif
 
-  <!-- MODAL DE EDITAR ASIGNACION-->
-  <div class="modal" id="editarAsignacion">
+  <!-- MODAL DE  ASIGNAR USUARIO-->
+  <div class="modal" id="asignarUsuario">
     <div class="modal-dialog">
       <div class="modal-content">
   
@@ -283,6 +348,7 @@
       $('#cantidadAsignada').val(cantidadProducto);
       $('#cantidadAsignada').attr('max',cantidadProducto);
     }
+
 
     // fecha = new Date();
     // mes = (fecha.getMonth()+1);

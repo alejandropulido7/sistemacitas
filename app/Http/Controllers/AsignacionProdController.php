@@ -72,6 +72,7 @@ class AsignacionProdController extends Controller
     public function edit(asignacion_prod $asignacion_prod)
     {
         //
+
     }
 
     /**
@@ -81,9 +82,11 @@ class AsignacionProdController extends Controller
      * @param  \App\asignacion_prod  $asignacion_prod
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, asignacion_prod $asignacion_prod)
+    public function update(Request $request, idAsignacion $id)
     {
         //
+        $actualizarAsignacion = asignacion_prod::findOrFail($id);
+        return redirect('inventario');
     }
 
     /**

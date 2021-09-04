@@ -25,7 +25,7 @@ class InventarioController extends Controller
                                         ->join('productos', 'inventarios.idProducto', '=', 'productos.id')
                                         ->get();
         $datosProductos = Productos::all();
-        $datosAsignacion = asignacion_prod::select('asignacion_prods.id', 'asignacion_prods.idInventario', 'inventarios.cantidadProducto','asignacion_prods.idUsuario', 'asignacion_prods.cantidadAsignada', 'productos.nombreProducto', 'usuarios.nombreCompleto')
+        $datosAsignacion = asignacion_prod::select('asignacion_prods.id', 'asignacion_prods.idInventario', 'asignacion_prods.detalleAsignacion','inventarios.cantidadProducto','asignacion_prods.idUsuario', 'asignacion_prods.cantidadAsignada', 'inventarios.idProducto' ,'productos.nombreProducto', 'usuarios.nombreCompleto')
                                             ->join('inventarios', 'asignacion_prods.idInventario', '=', 'inventarios.id')
                                             ->join('usuarios', 'asignacion_prods.idUsuario', '=', 'usuarios.id')
                                             ->join('productos', 'inventarios.idProducto', '=', 'productos.id')

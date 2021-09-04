@@ -26,6 +26,7 @@ Route::get('/actividades', function () {
 Route::delete('inventario/{inventario}', 'InventarioController@destroy')->name('inventario.destroy');
 Route::delete('asignacion_prods/{asignacion_prods}', 'AsignacionProdController@destroy')->name('asignacion_prods.destroy');
 Route::put('inventario/{inventario}/update', 'InventarioController@update')->name('inventario.update');
+Route::put('asignacion_prods/{asignacion_prods}/update', 'InventarioController@update')->name('asignacion_prods.update');
 Route::get('citas/buscarCliente', 'CitasController@buscarCliente')->name('citas.buscarCliente');
 Route::get('citas/nombreCliente', 'CitasController@nombreCliente')->name('citas.nombreCliente');
 Route::put('citas/{cita}/update', 'CitasController@update')->name('citas.update');
