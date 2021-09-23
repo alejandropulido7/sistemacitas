@@ -98,7 +98,8 @@ class AsignacionProdController extends Controller
     public function destroy(asignacion_prod $asignacion_prod)
     {
         //
-        $asignacion_prod->delete();
-        return redirect('inventario');
+        // $asignacion_prod->delete();
+        // return redirect('inventario');
+        return $asignacion_prod;
     }
 }

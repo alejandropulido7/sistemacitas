@@ -162,7 +162,7 @@
                       <form class="m-0" method="post" action="{{ route('asignacion_prods.destroy', $asignacion)}}" >
                         {{ csrf_field() }}
                         @method('DELETE')
-                        <button type="submit" onclick="return confirm('¿Seguro desea borrar el registro?');" class="dropdown-item w-100 m-0">Borrar</button>
+                        <button type="submit" onclick="return confirm('¿Seguro desea borrar el registro?');" class="dropdown-item w-100 m-0">Eliminar asignación</button>
                       </form>                      
                     </div>
                             
